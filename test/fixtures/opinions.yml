@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  caffe_id: 1
+  comment: MyText
+  rating: 1
+
+two:
+  caffe_id: 1
+  comment: MyText
+  rating: 1

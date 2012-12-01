@@ -1,4 +1,7 @@
 Nepusacica::Application.routes.draw do
+  resources :opinions
+
+
   resources :caffes
 
 
