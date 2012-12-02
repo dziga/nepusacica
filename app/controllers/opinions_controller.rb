@@ -25,6 +25,8 @@ class OpinionsController < ApplicationController
   # GET /opinions/new.json
   def new
     @opinion = Opinion.new
+    @opinion.caffe_id = params[:caffe_id]
+    @caffe = Caffe.find(params[:caffe_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +46,7 @@ class OpinionsController < ApplicationController
 
     respond_to do |format|
       if @opinion.save
-        format.html { redirect_to @opinion, notice: 'Opinion was successfully created.' }
+        format.html { redirect_to @opinion.caffe, notice: 'Opinion was successfully created.' }
         format.json { render json: @opinion, status: :created, location: @opinion }
       else
         format.html { render action: "new" }
