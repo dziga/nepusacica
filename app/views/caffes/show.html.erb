@@ -10,6 +10,25 @@
   <%= @caffe.address %>
 </p>
 
+<p>
+  <b>Opinions:</b>
+  <br>
+  <% if @caffe.opinions.blank? %>
+    <% # ništa ako prazno %>
+  <% else %>
+    <% # ima opiniona za kafe %>
+    <% @caffe.opinions.each do |opinion| %>
+      <em>
+        <%= opinion.comment %>
+      </em>
+      <br>
+      Rating: <%= opinion.rating %>
+      <br><br>
+    <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'Add new opinion', new_opinion_path(caffe_id: @caffe) %>
 
 <%= link_to 'Edit', edit_caffe_path(@caffe) %> |
 <%= link_to 'Back', caffes_path %>
