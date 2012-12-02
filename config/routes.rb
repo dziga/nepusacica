@@ -1,4 +1,6 @@
 Nepusacica::Application.routes.draw do
+  get "main/index"
+
   resources :opinions
 
   match 'caffes/search/latitude/:latitude/longitude/:longitude' => 'caffes#search'
