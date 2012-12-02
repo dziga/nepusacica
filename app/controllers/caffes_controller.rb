@@ -1,6 +1,7 @@
 class CaffesController < ApplicationController
   # GET /caffes
   # GET /caffes.json
+  
 
   def index
     @caffes = Caffe.all
@@ -14,11 +15,12 @@ class CaffesController < ApplicationController
   end
 
   def search
+    range = 0.01
     address_results = Gmaps4rails.geocode(params[:address])
 
     latitude =  address_results[0][:lat]
     longitude = address_results[0][:lng]
-    @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude -0.001, latitude + 0.01, longitude - 0.01, longitude + 0.01])
+    @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range])
     @caffes_json = @caffes.to_gmaps4rails
 
     respond_to do |format|
