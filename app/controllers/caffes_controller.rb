@@ -4,7 +4,7 @@ class CaffesController < ApplicationController
 
   def index
     @caffes = Caffe.all
-    @caffes_json = Caffe.all
+    @caffes_json = @caffes.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb
