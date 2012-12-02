@@ -4,7 +4,18 @@ class CaffesController < ApplicationController
   
 
   def index
-    @caffes = Caffe.all
+    range = 0.01
+    
+    if !params[:latitude].blank? and !params[:longitude].blank?
+
+      latitude =  params[:latitude].to_f/10000000
+      longitude = params[:longitude].to_f/10000000
+      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range]) 
+    
+    else
+      @caffes = Caffe.all
+    end
+
     @caffes_json = @caffes.to_gmaps4rails
 
     respond_to do |format|

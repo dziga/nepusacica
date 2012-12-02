@@ -3,7 +3,7 @@ Nepusacica::Application.routes.draw do
 
   resources :opinions
 
-  match 'caffes/search/latitude/:latitude/longitude/:longitude' => 'caffes#search'
+  match 'caffes/latitude/:latitude/longitude/:longitude' => 'caffes#index'
   match 'caffes/search' => 'caffes#search'
   match 'caffes/search/:address' => 'caffes#search'
   resources :caffes
