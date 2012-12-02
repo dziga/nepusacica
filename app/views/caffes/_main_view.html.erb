@@ -27,4 +27,4 @@
 <% end %>
 </table>
 
-<%= gmaps4rails(@caffes_json) %>
+<%= gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 4},"markers" => { "data" => @caffes_json }) %>

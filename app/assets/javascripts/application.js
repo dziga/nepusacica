@@ -13,3 +13,25 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+function getCurrentUsersLocation()
+{
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(setMarkerOfUsersPosition);
+    }
+  else{alert("Geolocation is not supported by this browser.");}
+}
+function setMarkerOfUsersPosition(position)
+{
+  Gmaps.map.createMarker(
+  	{
+  		Lat: position.coords.latitude,
+        Lng: position.coords.longitude, 
+        rich_marker: null, 
+        marker_picture: ""
+    });
+
+}
+
