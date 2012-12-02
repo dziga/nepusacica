@@ -1,6 +1,7 @@
 Nepusacica::Application.routes.draw do
   # get "main/index"
 
+  #get "opinions/new/:id" => "opinions#new"
   resources :opinions
 
   match 'caffes/latitude/:latitude/longitude/:longitude' => 'caffes#index'
