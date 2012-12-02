@@ -9,7 +9,7 @@ class Caffe < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-      "<h4>#{name}</h4>"
+      "#{name}"
   end
 
 end
