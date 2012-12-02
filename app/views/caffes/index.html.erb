@@ -1,10 +1,5 @@
 <h1>Listing caffes</h1>
 
-<%= form_tag("/caffes/search", :method => "post") do %>
-  <%= label_tag(:address, "Adresa:") %>
-  <%= text_field_tag(:address) %>
-  <%= submit_tag("Trazi") %>
-<% end %>
 
 <%= render 'main_view' %>
 
