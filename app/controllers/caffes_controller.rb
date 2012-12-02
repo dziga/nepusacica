@@ -16,13 +16,20 @@ class CaffesController < ApplicationController
 
   def search
     range = 0.01
-    address_results = Gmaps4rails.geocode(params[:address])
+    
+    if !params[:address].blank?
 
-    latitude =  address_results[0][:lat]
-    longitude = address_results[0][:lng]
-    @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range])
+      address_results = Gmaps4rails.geocode(params[:address])
+      latitude =  address_results[0][:lat]
+      longitude = address_results[0][:lng]
+      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range]) 
+    
+    else
+      @caffes = Caffe.all
+    end
+
     @caffes_json = @caffes.to_gmaps4rails
-
+    
     respond_to do |format|
       format.html
       format.json {render json: @caffes_json}
