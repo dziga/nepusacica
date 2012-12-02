@@ -11,10 +11,8 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :caffe_id %><br />
-    <%= f.number_field :caffe_id %>
-  </div>
+  <%= f.hidden_field :caffe_id %>
+
   <div class="field">
     <%= f.label :comment %><br />
     <%= f.text_area :comment %>
