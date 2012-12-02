@@ -72,6 +72,7 @@ class CaffesController < ApplicationController
   # GET /caffes/1/edit
   def edit
     @caffe = Caffe.find(params[:id])
+    @caffes_json = @caffe.to_gmaps4rails
   end
 
   # POST /caffes

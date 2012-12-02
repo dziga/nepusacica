@@ -2,5 +2,39 @@
 
 <%= render 'form' %>
 
+<%= gmaps("markers" => { "data" => @caffes_json, "options" => { "draggable" => true }}) %>
+
+
+
 <%= link_to 'Show', @caffe %> |
 <%= link_to 'Back', caffes_path %>
+
+
+<%= yield :scripts %>
+
+
+<script type="text/javascript">
+
+Gmaps.map.HandleDragend = function(pos) {
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({
+    latLng: pos
+  }, function(responses) {
+    if (responses && responses.length > 0) {
+      //alert(responses[0].formatted_address);
+      //alert(responses[0].geometry.location.lat());
+      $('#caffe_latitude').val(responses[0].geometry.location.lat());
+      $('#caffe_longitude').val(responses[0].geometry.location.lng());
+    }else {
+      alert('Cannot determine address at this location.');
+    }
+  });
+};
+
+Gmaps.map.callback = function() {
+  for (var i = 0; i <  this.markers.length; ++i) {
+     google.maps.event.addListener(Gmaps.map.markers[i].serviceObject, 'dragend', function() { Gmaps.map.HandleDragend(this.getPosition()) });
+  }
+  
+};        
+</script>
