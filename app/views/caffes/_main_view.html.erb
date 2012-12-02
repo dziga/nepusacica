@@ -9,6 +9,8 @@
   <tr>
     <th>Name</th>
     <th>Address</th>
+    <th>latitude</th>
+    <th>longitude</th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,6 +22,8 @@
   <tr>
     <td><%= caffe.name %></td>
     <td><%= caffe.address %></td>
+    <td><%= caffe.latitude %></td>
+    <td><%= caffe.longitude %></td>
     <td><%= link_to 'Show', caffe %></td>
     <td><%= link_to 'Edit', edit_caffe_path(caffe) %></td>
     <td><%= link_to 'Destroy', caffe, method: :delete, data: { confirm: 'Are you sure?' } %></td>

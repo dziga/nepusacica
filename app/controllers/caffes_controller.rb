@@ -4,11 +4,13 @@ class CaffesController < ApplicationController
 
   def index
     @caffes = Caffe.all
-    @caffes_json = Caffe.all.to_gmaps4rails
+    latitude =  params[:latitude].to_f/10000000
+    longitude = params[:longitude].to_f/10000000
+    @caffes_json = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude -0.001, latitude + 0.01, longitude - 0.01, longitude + 0.01]).to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @caffes }
+      format.json { render json: @caffes}
 
     end
   end
