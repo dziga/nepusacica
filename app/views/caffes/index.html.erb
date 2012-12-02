@@ -1,24 +1,12 @@
 <h1>Listing caffes</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @caffes.each do |caffe| %>
-  <tr>
-    <td><%= caffe.name %></td>
-    <td><%= caffe.address %></td>
-    <td><%= link_to 'Show', caffe %></td>
-    <td><%= link_to 'Edit', edit_caffe_path(caffe) %></td>
-    <td><%= link_to 'Destroy', caffe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<%= form_tag("/caffes/search", :method => "post") do %>
+  <%= label_tag(:address, "Adresa:") %>
+  <%= text_field_tag(:address) %>
+  <%= submit_tag("Trazi") %>
 <% end %>
-</table>
+
+<%= render 'main_view' %>
 
 <br />
 

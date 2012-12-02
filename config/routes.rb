@@ -1,8 +1,10 @@
 Nepusacica::Application.routes.draw do
   resources :opinions
 
-
+  match 'caffes/search' => 'caffes#search'
+  match 'caffes/search/:address' => 'caffes#search'
   resources :caffes
+
 
 
   # The priority is based upon order of creation:

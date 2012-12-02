@@ -1,12 +1,25 @@
 class CaffesController < ApplicationController
   # GET /caffes
   # GET /caffes.json
+
   def index
     @caffes = Caffe.all
+    @caffes_json = Caffe.all.to_gmaps4rails
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @caffes }
+
+    end
+  end
+
+  def search
+    @caffes = Caffe.find(:all, :conditions=> ["address like ?", params[:address] + "%"])
+    @caffes_json = Caffe.find(:all, :conditions=> ["address like ?", params[:address] + "%"]).to_gmaps4rails
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @caffes}
     end
   end
 
