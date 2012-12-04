@@ -8,8 +8,9 @@ class CaffesController < ApplicationController
     
     if !params[:latitude].blank? and !params[:longitude].blank?
 
-      latitude =  params[:latitude].to_f/10000000
-      longitude = params[:longitude].to_f/10000000
+      latitude =  params[:latitude].to_f
+      longitude = params[:longitude].to_f
+      
       @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range]) 
     
     else

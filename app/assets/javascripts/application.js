@@ -34,4 +34,22 @@ function setMarkerOfUsersPosition(position)
     });
 
 }
+function postCurrentUsersLocation()
+{
+  if(navigator.geolocation)
+  {
+    navigator.geolocation.getCurrentPosition(setInputFields);
+  }
+  else
+  {
+    alert("Failed to set location!");
+  }
+}
+
+function setInputFields(position)
+{
+  $('#latitude').val(position.coords.latitude);
+  $('#longitude').val(position.coords.longitude);
+}
+
 
