@@ -22,7 +22,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'sass-twitter-bootstrap-rails', '~>1.0'
+
+# responsive classes are making a mess, so it's out for now
+#gem 'sass-twitter-bootstrap-rails', '~>1.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
