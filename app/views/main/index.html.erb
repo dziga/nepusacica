@@ -9,11 +9,11 @@
           <%= hidden_field_tag(:longitude, "") %>
           <button id="locator" class="btn btn-primary btn-large">Lociraj me</button>
       <% end %>
-      <form>
-        <fieldset>
-             <input type="text" placeholder="Ili unesite zeljenu adresu...">  
-        </fieldset>
-      </form>          
+
+      <%=form_tag(:html => {:id => "address_form"}, :controller => "caffes", :action => "search", :method => "post", ) do %>
+          <%= text_field_tag(:address, "", placeholder: "Trazi u okolini adrese...") %>
+      <% end %>
+               
     </div>
     <div class="span3 offset1">
       <p>Svi smo jednaki.</p>
@@ -32,6 +32,12 @@
 
 $(window).load(function(){
   postCurrentUsersLocation();
+});
+
+$('#address').keypress(function (e) {
+  if (e.which == 13) {
+    $('#address_form').submit();
+  }
 });
 
 </script>
