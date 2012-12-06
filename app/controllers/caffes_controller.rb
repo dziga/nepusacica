@@ -8,10 +8,10 @@ class CaffesController < ApplicationController
     
     if !params[:latitude].blank? and !params[:longitude].blank?
 
-      latitude =  params[:latitude].to_f
-      longitude = params[:longitude].to_f
+      @latitude =  params[:latitude].to_f
+      @longitude = params[:longitude].to_f
       
-      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range]) 
+      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", @latitude - range, @latitude + range, @longitude - range, @longitude + range]) 
     
     else
       @caffes = Caffe.all
@@ -32,9 +32,9 @@ class CaffesController < ApplicationController
     if !params[:address].blank?
 
       address_results = Gmaps4rails.geocode(params[:address])
-      latitude =  address_results[0][:lat]
-      longitude = address_results[0][:lng]
-      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - range, latitude + range, longitude - range, longitude + range]) 
+      @latitude =  address_results[0][:lat]
+      @longitude = address_results[0][:lng]
+      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", @latitude - range, @latitude + range, @longitude - range, @longitude + range]) 
     
     else
       @caffes = Caffe.all

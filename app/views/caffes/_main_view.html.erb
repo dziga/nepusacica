@@ -29,23 +29,13 @@
 <% end %>
 </table>
 
-<input type="hidden" id="lat_from" value="">
-<input type="hidden" id="lng_from" value="">
+<input type="hidden" id="lat_from" value="<%=@latitude%>">
+<input type="hidden" id="lng_from" value="<%=@longitude%>">
 
 <%= gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 4},"markers" => { "data" => @caffes_json }) %>
 
+
 <script type="text/javascript">
-  $(window).load(function(){
-    if (navigator.geolocation)
-     {
-        navigator.geolocation.getCurrentPosition(set_from_values);
-      }
-
-      function set_from_values(position){
-        $("#lat_from").val(position.coords.latitude);
-        $("#lng_from").val(position.coords.longitude);
-      }});
-
   $(".direction_to").click(function() {
      
         var lat_to = $(this).find(".lat_to").text();
@@ -55,8 +45,10 @@
         Gmaps.map.initialize();
         Gmaps.map.direction_conf.origin = new google.maps.LatLng(lat_from, lng_from);
         Gmaps.map.direction_conf.destination =  new google.maps.LatLng(lat_to, lng_to);
+        Gmaps.map.direction_conf.travelMode = "WALKING";
         //Gmaps.map.direction_conf.language = 'sr';
-        Gmaps.map.create_direction();
+        Gmaps.map.create_direction(); 
+        
 
   });
 </script>
