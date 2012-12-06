@@ -1,3 +1,39 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.center1 {
+	width: 150px;
+	margin:100px auto 0 auto;
+}
+
+.center1 form{
+	margin-right: auto;
+	margin-left: auto;
+	height: 70px;
+	width: 150px;
+}
+
+.center1 button{
+	margin:0 auto;
+	height: 70px;
+	width: 150px;
+}
+
+.center2 {
+	width: 250px;
+	margin:20px auto;
+}
+
+.center2 form{
+	margin-right: auto;
+	margin-left: auto;
+	height: 70px;
+	width: 250px;
+}
+
+.center2 input{
+	margin:0 auto;
+	height: 20px;
+	width: 230px;
+}

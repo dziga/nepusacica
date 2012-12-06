@@ -3,30 +3,18 @@
 <div class="center">
  
   <div class="row">
-    <div class="span3 offset2">
-      <%=form_tag(:controller => "caffes", :action => "index", :method => "get") do %>
+    <div class="center1">
+      <%=form_tag(:controller => "caffes", :action => "index", :method => "post") do %>
           <%= hidden_field_tag(:latitude, "") %>
           <%= hidden_field_tag(:longitude, "") %>
-          <button id="locator" class="btn btn-primary btn-large">Lociraj me</button>
+          <button id="locator" class="offset1 btn btn-primary dugme">Lociraj me</button>
       <% end %>
-
+    </div>
+    <div class="center2">
       <%=form_tag(:html => {:id => "address_form"}, :controller => "caffes", :action => "search", :method => "post", ) do %>
           <%= text_field_tag(:address, "", placeholder: "Trazi u okolini adrese...") %>
       <% end %>
-               
     </div>
-    <div class="span3 offset1">
-      <p>Svi smo jednaki.</p>
-      <p>Ipak, neki su jednakiji.</p>
-      <p>Pronadji mesto gde te postuju.</p>
-      <p>Reci ne zadimljenoj prostoriji.</p>
-      <p>Reci ne trovanju.</p>
-      <p>Reci ne kompromisu...</p>
-    </div>
-
-  </div>
-
-</div>
 
 <script type="text/javascript">
 
