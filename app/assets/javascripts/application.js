@@ -52,7 +52,7 @@ function setInputFields(position)
   $('#longitude').val(position.coords.longitude);
 }
 
-function updateTopRatedCaffesList(){
+function updateTopRatedCaffesListBasedOnPosition(){
   if(navigator.geolocation)
     {
       navigator.geolocation.getCurrentPosition(getCaffesAroundUsersLocation);
@@ -63,7 +63,10 @@ function updateTopRatedCaffesList(){
           var yeah = caffes[0];
           var htmlForUpdate = "<ul>";
           $.each(caffes, function(key, caffe){
-            htmlForUpdate = htmlForUpdate + "<li>" + caffe.name + "<div id='"+ caffe.name +"'' class='caffe-address'>"+caffe.address+"</div></li>";
+            htmlForUpdate = htmlForUpdate + 
+            "<li class='direction_to'>" + caffe.name + 
+            "<div class='hidden lat_to'>"+caffe.latitude+"</div>" +
+            "<div class='hidden lng_to'>"+caffe.longitude+"</div></li>";
           })
           htmlForUpdate = htmlForUpdate + "</ul>";
           $("#top-rated").html(htmlForUpdate);

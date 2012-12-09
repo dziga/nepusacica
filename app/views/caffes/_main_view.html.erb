@@ -1,10 +1,12 @@
 <div class="row">
   <div id="top-rated" class="span4">
     <ul>
-      <li>Kafanica Bezec</li>
-      <li>Pivnica Gusan</li>
-      <li>Atrijum</li>
-      <li>GOvnarijum</li>
+      <% @caffes.each do |caffe| %>
+        <li class='direction_to'> <%= caffe.name %> 
+          <div class='hidden lat_to'> <%= caffe.latitude %></div>
+          <div class='hidden lng_to'> <%= caffe.longitude %></div>
+        </li>
+      <% end %>
     </ul>
   </div>
   <div class="span8">
@@ -17,21 +19,26 @@
 </div>
 <script type="text/javascript">
 
-  $(window).load(function(){
-    updateTopRatedCaffesList();
-  });
-  $(".direction_to").click(function() {
-      
-        var lat_to = $(this).find(".lat_to").text();
-        var lng_to = $(this).find(".lng_to").text();
-        var lat_from = $("#lat_from").val();
-        var lng_from = $("#lng_from").val();
-        Gmaps.map.initialize();
-        Gmaps.map.direction_conf.origin = new google.maps.LatLng(lat_from, lng_from);
-        Gmaps.map.direction_conf.destination =  new google.maps.LatLng(lat_to, lng_to);
-        Gmaps.map.direction_conf.travelMode = "WALKING";
-        //Gmaps.map.direction_conf.language = 'sr';
-        Gmaps.map.create_direction(); 
+  $(".direction_to").live('click', function(e){
+    e.preventDefault;
+    var clickedOn = $(this);    
+    if(navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(setDirectionsToCaffe);
+    }
+    function setDirectionsToCaffe(position){
+      var lat_to = clickedOn.find(".lat_to").text();
+      var lng_to = clickedOn.find(".lng_to").text();
+      var lat_from = position.coords.latitude;
+      var lng_from = position.coords.longitude
+      Gmaps.map.initialize();
+      Gmaps.map.direction_conf.origin = new google.maps.LatLng(lat_from, lng_from);
+      Gmaps.map.direction_conf.destination =  new google.maps.LatLng(lat_to, lng_to);
+      Gmaps.map.direction_conf.travelMode = "WALKING";
+      //Gmaps.map.direction_conf.language = 'sr';
+      Gmaps.map.create_direction(); 
+
+    }
         
 
   });
