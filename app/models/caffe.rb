@@ -4,7 +4,7 @@ class Caffe < ActiveRecord::Base
 
   has_many :opinions do
     def total_rating
-      sum(rating:)
+      sum(:rating)
     end
   end
 
