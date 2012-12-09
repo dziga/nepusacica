@@ -9,7 +9,25 @@
 </head>
 <body>
 
-<div class="header"></div>
+<div class="header">
+	<div class="container">
+		<div class="row">
+			<div class="span2 offset6">
+		    <%=form_tag(:controller => "caffes", :action => "index", :method => "post") do %>
+	        <%= hidden_field_tag(:latitude, "") %>
+	        <%= hidden_field_tag(:longitude, "") %>
+	        <button id="locator" class=" btn btn-primary ">Lociraj me</button>
+	      <% end %>
+	    </div>
+
+	    <div class="span4">
+	      <%=form_tag(:html => {:id => "address_form"}, :controller => "caffes", :action => "search", :method => "post", ) do %>
+	      	<%= text_field_tag(:address, "", placeholder: "Trazi u okolini adrese...") %>
+	      <% end %>
+	    </div>
+	  </div>
+	</div>
+</div>
 
 <div class="container">
     <%= yield %>    
