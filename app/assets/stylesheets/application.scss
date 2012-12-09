@@ -34,3 +34,15 @@ body{
 	background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#2c2c2c 33%,#000000 51%,#111111 60%,#1c1c1c 91%,#131313 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
 }
+
+.row {
+	padding-top: 10px;
+}
+.row button {
+	float: right;
+}
+.row input {
+	float: right;
+	width:290px;
+
+}
