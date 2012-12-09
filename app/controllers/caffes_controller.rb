@@ -34,10 +34,10 @@ class CaffesController < ApplicationController
       address_results = Gmaps4rails.geocode(params[:address])
       @latitude =  address_results[0][:lat]
       @longitude = address_results[0][:lng]
-      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", @latitude - range, @latitude + range, @longitude - range, @longitude + range]) 
+      @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", @latitude - range, @latitude + range, @longitude - range, @longitude + range]).limit(10)
     
     else
-      @caffes = Caffe.all
+      @caffes = Caffe.limit(10)
     end
 
     @caffes_json = @caffes.to_gmaps4rails
