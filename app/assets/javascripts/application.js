@@ -59,7 +59,7 @@ function updateTopRatedCaffesListBasedOnPosition(){
     }
     function getCaffesAroundUsersLocation(position){
       
-      $.getJSON("index.json", {latitude: position.coords.latitude, longitude: position.coords.longitude}, function(caffes){
+      $.getJSON("caffes/index.json", {latitude: position.coords.latitude, longitude: position.coords.longitude}, function(caffes){
           var yeah = caffes[0];
           var htmlForUpdate = "<ul>";
           $.each(caffes, function(key, caffe){
@@ -73,5 +73,37 @@ function updateTopRatedCaffesListBasedOnPosition(){
       });
     }
 }
+
+function fillInSearchBox(text){
+  $("#search-suggestions").val(text);
+}
+
+
+//LISTENERS
+
+$(".direction_to").live('click', function(e){
+  e.preventDefault;
+  var clickedOn = $(this);  
+  if(navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(setDirectionsToCaffe);
+    }
+    function setDirectionsToCaffe(position){
+      var lat_to = clickedOn.find(".lat_to").text();
+      var lng_to = clickedOn.find(".lng_to").text();
+      var lat_from = position.coords.latitude;
+      var lng_from = position.coords.longitude
+      Gmaps.map.initialize();
+      Gmaps.map.direction_conf.origin = new google.maps.LatLng(lat_from, lng_from);
+      Gmaps.map.direction_conf.destination =  new google.maps.LatLng(lat_to, lng_to);
+      Gmaps.map.direction_conf.travelMode = "WALKING";
+      //Gmaps.map.direction_conf.language = 'sr';
+      Gmaps.map.create_direction(); 
+
+    }
+});
+
+
+
 
 

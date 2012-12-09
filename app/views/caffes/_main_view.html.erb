@@ -14,33 +14,42 @@
   </div>
 </div>
 
-<div id="top-rated">
-
-</div>
 <script type="text/javascript">
+  var keypress_counter = 0;
+  $("input#address").keypress(function(e) {
+    keypress_counter++;
 
-  $(".direction_to").live('click', function(e){
-    e.preventDefault;
-    var clickedOn = $(this);    
-    if(navigator.geolocation)
-    {
-      navigator.geolocation.getCurrentPosition(setDirectionsToCaffe);
+    var inputAdress = $(this).val();
+    var htmlForUpdate = '';
+    if(e.keyCode==8)
+      keypress_counter--;
+    if(inputAdress=='') 
+      $("#search-suggestions").html('');
+    if(keypress_counter>4){
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': inputAdress}, function(results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK){
+          $.each(results, function(key, result){
+              htmlForUpdate = htmlForUpdate + "<div class='search-suggesiton-drop-down-item'>" + result.formatted_address + "</div>";
+          });
+          $("#search-suggestions").html(htmlForUpdate);
+          $("#search-suggestions").show();
+        }
+      });
     }
-    function setDirectionsToCaffe(position){
-      var lat_to = clickedOn.find(".lat_to").text();
-      var lng_to = clickedOn.find(".lng_to").text();
-      var lat_from = position.coords.latitude;
-      var lng_from = position.coords.longitude
-      Gmaps.map.initialize();
-      Gmaps.map.direction_conf.origin = new google.maps.LatLng(lat_from, lng_from);
-      Gmaps.map.direction_conf.destination =  new google.maps.LatLng(lat_to, lng_to);
-      Gmaps.map.direction_conf.travelMode = "WALKING";
-      //Gmaps.map.direction_conf.language = 'sr';
-      Gmaps.map.create_direction(); 
+    
+  });  
 
-    }
-        
-
+  $("input#address").focusout(function() {
+    keypress_counter = 0;
+    $("#search-suggestions").hide();
   });
+
+  $(".search-suggesiton-drop-down-item").live("click", function(){
+    $("#search-suggestions").hide();
+    $("#address").val($(this).text());
+  });
+
 </script>
 

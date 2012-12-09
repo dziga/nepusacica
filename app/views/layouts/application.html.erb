@@ -22,8 +22,9 @@
 
 	    <div class="span4">
 	      <%=form_tag(:html => {:id => "address_form"}, :controller => "caffes", :action => "search", :method => "post", ) do %>
-	      	<%= text_field_tag(:address, "", placeholder: "Trazi u okolini adrese...") %>
+	      	<%= text_field_tag(:address, "", placeholder: "Trazi u okolini adrese...", :autocomplete => :off) %>
 	      <% end %>
+	      <div id="search-suggestions"></div>
 	    </div>
 	  </div>
 	</div>

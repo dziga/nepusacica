@@ -23,3 +23,9 @@
 .hidden{
 	display: none;
 }
+
+#search-suggestions {
+	z-index:1; 
+	background-color:white; 
+	padding:5px;
+}
