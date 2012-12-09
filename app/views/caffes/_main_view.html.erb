@@ -34,10 +34,16 @@
 
 <%= gmaps("map_options" => { "detect_location" => false, "center_on_user" => false, "zoom" => 4},"markers" => { "data" => @caffes_json }) %>
 
+<div id="top-rated">
 
+</div>
 <script type="text/javascript">
+
+  $(window).load(function(){
+    updateTopRatedCaffesList();
+  });
   $(".direction_to").click(function() {
-     
+      
         var lat_to = $(this).find(".lat_to").text();
         var lng_to = $(this).find(".lng_to").text();
         var lat_from = $("#lat_from").val();

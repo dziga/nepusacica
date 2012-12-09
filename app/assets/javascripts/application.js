@@ -52,4 +52,23 @@ function setInputFields(position)
   $('#longitude').val(position.coords.longitude);
 }
 
+function updateTopRatedCaffesList(){
+  if(navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition(getCaffesAroundUsersLocation);
+    }
+    function getCaffesAroundUsersLocation(position){
+      
+      $.getJSON("index.json", {latitude: position.coords.latitude, longitude: position.coords.longitude}, function(caffes){
+          var yeah = caffes[0];
+          var htmlForUpdate = "<ul>";
+          $.each(caffes, function(key, caffe){
+            htmlForUpdate = htmlForUpdate + "<li>" + caffe.name + "<div id='"+ caffe.name +"'' class='caffe-address'>"+caffe.address+"</div></li>";
+          })
+          htmlForUpdate = htmlForUpdate + "</ul>";
+          $("#top-rated").html(htmlForUpdate);
+      });
+    }
+}
+
 
