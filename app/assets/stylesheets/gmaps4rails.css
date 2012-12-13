@@ -13,7 +13,6 @@
 .gmaps4rails_map {
   width: 600px;
   height: 400px;
-  z-index: -1;
 }
 
 .bing_map {
