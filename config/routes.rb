@@ -4,7 +4,6 @@ Nepusacica::Application.routes.draw do
   #get "opinions/new/:id" => "opinions#new"
   resources :opinions
 
-  match 'caffes/locate' => 'caffes#index'
   match 'caffes/index.json' => 'caffes#index'
   match 'caffes/search' => 'caffes#search'
   match 'caffes/search/:address' => 'caffes#search'

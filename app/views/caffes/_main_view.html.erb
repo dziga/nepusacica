@@ -31,7 +31,7 @@
 
         if (status == google.maps.GeocoderStatus.OK){
           $.each(results, function(key, result){
-              htmlForUpdate = htmlForUpdate + "<div class='search-suggesiton-drop-down-item'>" + result.formatted_address + "</div>";
+              htmlForUpdate = htmlForUpdate + "<div id='search-suggesiton-drop-down-item'>" + result.formatted_address + "</div>";
           });
           $("#search-suggestions").html(htmlForUpdate);
           $("#search-suggestions").show();

@@ -59,6 +59,8 @@ function updateTopRatedCaffesListBasedOnPosition(){
     }
     function getCaffesAroundUsersLocation(position){
       
+      
+
       $.getJSON("caffes/index.json", {latitude: position.coords.latitude, longitude: position.coords.longitude}, function(caffes){
           var yeah = caffes[0];
           var htmlForUpdate = "<ul>";
@@ -67,9 +69,15 @@ function updateTopRatedCaffesListBasedOnPosition(){
             "<li class='direction_to'>" + caffe.name + 
             "<div class='hidden lat_to'>"+caffe.latitude+"</div>" +
             "<div class='hidden lng_to'>"+caffe.longitude+"</div></li>";
+            
           })
           htmlForUpdate = htmlForUpdate + "</ul>";
           $("#top-rated").html(htmlForUpdate);
+          //Gmaps.map.initialize();
+          //Gmaps.map.markers = [{"description":"Bezec","lat":45.25484729999999,"lng":19.84625870000002},{"description":"The pub","lat":45.2479267,"lng":19.8354265},{"description":"Lazino tele","lat":45.2568717,"lng":19.844985800000018},{"description":"Cirpanova","lat":45.2527058,"lng":19.8337672},{"description":"Doza","lat":45.24616109999999,"lng":19.8307461},{"description":"Bulevar","lat":45.2586721,"lng":19.8096439}];
+          //  Gmaps.map.markers = JSON.stringify(caffes);
+          //Gmaps.map.create_markers();
+
       });
     }
 }
