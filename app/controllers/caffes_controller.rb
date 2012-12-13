@@ -14,7 +14,7 @@ class CaffesController < ApplicationController
       @caffes = Caffe.find(:all, :conditions=> ["latitude > ? and latitude < ? and longitude > ? and longitude < ?", @latitude - range, @latitude + range, @longitude - range, @longitude + range])
     
     else
-      @caffes = Caffe.limit(10);
+      @caffes = Caffe.find(:all);
     end
 
     @caffes_json = @caffes.to_gmaps4rails

@@ -13,11 +13,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="span2 offset6">
+				<button id="locator" class=" btn btn-primary ">Lociraj me</button>
 		    <%=form_tag(:controller => "caffes", :action => "index", :method => "post") do %>
 	        <%= hidden_field_tag(:latitude, "") %>
 	        <%= hidden_field_tag(:longitude, "") %>
-	        <button id="locator" class=" btn btn-primary ">Lociraj me</button>
+	        
 	      <% end %>
+	      
 	    </div>
 
 	    <div class="span4">
@@ -39,6 +41,8 @@
 		updateTopRatedCaffesListBasedOnPosition();
 	});
 </script>
+
+
 
 </body>
 </html>
