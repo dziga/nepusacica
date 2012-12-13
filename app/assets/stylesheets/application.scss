@@ -49,10 +49,10 @@ body{
 
 #search-suggestions {
 	display: none;
-	min-width: 293px;
+	min-width: 292px;
 	position: absolute;
 	margin-top: 5px;
-	margin-left: -5px;
+	margin-left: -4px;
 	z-index:1; 
 	background-color:white; 
 	padding:5px;
@@ -60,9 +60,13 @@ body{
 	border-top: 0px;
 	border-color: rgba(82, 168, 236, 0.8);
 	box-shadow: 0px 5px 8px rgba(82, 168, 236, 0.6);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 
 }
 
 #search-suggesiton-drop-down-item{
 	margin-top: 7px;
+	cursor: pointer;
 }
