@@ -46,3 +46,10 @@ body{
 	width:290px;
 
 }
+
+#search-suggestions {
+	position: absolute;
+	z-index:1; 
+	background-color:white; 
+	padding:5px;
+}
