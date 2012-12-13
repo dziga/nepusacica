@@ -41,14 +41,17 @@
     
   });  
 
-  $("input#address").focusout(function() {
-    keypress_counter = 0;
-    $("#search-suggestions").hide();
+  $(document).mouseup(function(e) {
+    //keypress_counter = 0;
+    if($("#search-suggestions").has(e.target).length===0){
+      $("#search-suggestions").hide();
+    };
   });
 
-  $(".search-suggesiton-drop-down-item").live("click", function(){
-    $("#search-suggestions").hide();
+
+  $("#search-suggesiton-drop-down-item").live("click", function(){
     $("#address").val($(this).text());
+    $("#search-suggestions").hide();
   });
 
 </script>
